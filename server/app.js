@@ -42,9 +42,11 @@ app.get('/myMonitoringService', function(req, res) {
 
 app.post('/myMonitoringService', function(req, res) {
     var data = JSON.parse(req.body);
-    data.entries.forEach(function (element, index, array) {
-        datastore.addData(element); 
-    });
+    if (data.entries) {
+        data.entries.forEach(function (element, index, array) {
+            datastore.addData(element); 
+        });
+    }
     res.send("data received"); 
 });
 
